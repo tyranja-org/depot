@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
+<% if @session_count > 5 %>
+  <p> You have visited the side <%= pluralize(@session_count, 'time', 'times') %> </p>
+<% end %>
 
 <h1>Your Pragmatic Catalog</h1>
 
@@ -11,6 +14,7 @@
         <%= sanitize(product.description) %>
         <div class="price_line">
           <span class="price"><%= number_to_currency(product.price, separator: ",") %></span>
+          <%= button_to 'Add to Cart', line_items_path(product_id: product) %>
         </div>
     <% end %>
     </div>
