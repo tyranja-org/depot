@@ -21,6 +21,12 @@ class ProductTest < ActiveSupport::TestCase
     assert_equal ["has already been taken"], product.errors[:title]
   end
 
+  test "product is not valid without a unique image_url" do
+    product = Product.new(image_url: products(:ruby).image_url)
+    assert product.invalid?
+    assert_equal "has already been taken", product.errors[:image_url].join('; ')
+  end
+
   test "product title has a length greater than 10" do
     product = products(:ruby)
     product.title = "four"

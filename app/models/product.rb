@@ -11,6 +11,8 @@ class Product < ApplicationRecord
     with:   %r{\.(gif|jpg|png)\Z}i,
     message: 'must be a URL for a GIF, JPG or PNG image.'
   }
+  validates :image_url, uniqueness: true
+
   private
 
   def ensure_not_referenced_by_any_line_item
