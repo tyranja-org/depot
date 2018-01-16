@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<% if @session_count > 5 %>
+<% if @session_count && @session_count > 5 %>
   <p> You have visited the side <%= pluralize(@session_count, 'time', 'times') %> </p>
 <% end %>
 
