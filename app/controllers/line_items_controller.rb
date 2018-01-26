@@ -72,7 +72,9 @@ class LineItemsController < ApplicationController
     @line_item = @line_item.decrement_quantity(@line_item.id)
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to store_index_url }
+        format.html { redirect_to store_index_path, notice: 'Line item was successfully updated.' }
+        format.js   { @current_item = @line_item }
+        format.json { head :ok }
       end
     end
   end
